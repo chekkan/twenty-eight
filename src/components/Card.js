@@ -1,6 +1,7 @@
 import React from "react";
+import styled from "@emotion/styled";
 
-const Card = ({ face, suit }) => {
+export const Card = styled(({ face, suit, className }) => {
   const symbolFor = suit => {
     const symbols = {
       spade: "&spades;",
@@ -18,19 +19,7 @@ const Card = ({ face, suit }) => {
     });
   };
   return (
-    <div
-      style={{
-        color: suit === "heart" || suit === "diamond" ? "red" : "black",
-        width: "calc(64px * 2)",
-        height: "calc(89px * 2)",
-        border: "1px solid #000",
-        borderRadius: "5px",
-        float: "left",
-        margin: "2px",
-        padding: "1em",
-        boxSizing: "border-box"
-      }}
-    >
+    <div className={`${className} ${suit}`}>
       <span
         style={{ display: "block", fontSize: " 1.7em", fontWeight: "bold" }}
       >
@@ -39,11 +28,22 @@ const Card = ({ face, suit }) => {
       {symbolFor(suit)}
     </div>
   );
-};
-
-const Deck = ({ cards }) =>
-  cards.map(({ face, suit }) => (
-    <Card key={`${face}.${suit}`} face={face} suit={suit} />
-  ));
-
-export default Deck;
+})`
+  width: calc(64px * 2);
+  height: calc(89px * 2);
+  border: 1px solid #000;
+  border-radius: 5px;
+  float: left;
+  margin: 2px;
+  padding: 0.5em;
+  box-sizing: border-box;
+  background-color: ghostwhite;
+  &.heart,
+  &.diamond {
+    color: red;
+  }
+  &.spade,
+  &.club {
+    color: black;
+  }
+`;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import styles from "./App.module.css";
-import Deck from "./Deck";
+import Deck from "./components/Deck";
+import Board from "./components/Board";
 import { thirtyTwoDeck } from "./lib/deck-of-cards";
 import { shuffle } from "./lib/shuffle";
 
@@ -25,7 +26,8 @@ class App extends Component {
             Shuffle
           </button>
         </div>
-        <Deck cards={this.state.cards} />
+        {/* <Deck cards={this.state.cards} /> */}
+        <Board deck={this.state.cards} />
       </>
     );
   }
