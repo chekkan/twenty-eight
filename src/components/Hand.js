@@ -6,22 +6,22 @@ export const Hand = styled(({ cards, className }) => {
   return (
     <div className={className}>
       {cards.map(({ face, suit }) => (
-        <Card
-          key={`${face}.${suit}`}
-          face={face}
-          suit={suit}
-          className="card"
-        />
+        <div className="card-container" key={`${face}.${suit}`}>
+          <Card face={face} suit={suit} className="card" />
+        </div>
       ))}
     </div>
   );
 })`
-  overflow: auto;
+  //   overflow: auto;
   height: 182px;
-  .card {
-    float: left;
+  display: flex;
+  flex-direction: row;
+  //   align-content: stretch;
+  .card-container {
+    width: calc(100% / 8 - 6px);
+    max-width: 90px;
   }
-  .card:not(:first-of-type) {
-    margin-left: -48px;
+  .card {
   }
 `;

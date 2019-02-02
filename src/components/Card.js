@@ -31,12 +31,13 @@ export const Card = styled(({ face, suit, className }) => {
 })`
   width: calc(64px * 2);
   height: calc(89px * 2);
-  border: 1px solid #000;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   margin: 2px;
   padding: 0.5em;
   box-sizing: border-box;
   background-color: ghostwhite;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
   &.heart,
   &.diamond {
     color: red;
