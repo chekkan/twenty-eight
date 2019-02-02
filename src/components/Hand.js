@@ -19,7 +19,7 @@ export const Hand = styled(({ cards, className }) => {
   flex-direction: row;
   //   align-content: stretch;
   .card-container {
-    width: calc(100% / 8 - 6px);
+    width: calc(100% / 8 - 8px);
     max-width: 90px;
   }
   .card {

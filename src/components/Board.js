@@ -12,8 +12,11 @@ class UnStyledBoard extends React.Component {
       hands: [[], [], [], []]
     };
   }
-  shuffle = () => {
-    this.setState(({ deck }) => ({ deck: shuffle([...deck]) }));
+  componentDidMount() {
+    this.shuffle(this.deal);
+  }
+  shuffle = cb => {
+    this.setState(({ deck }) => ({ deck: shuffle([...deck]) }), cb);
   };
   deal = () => {
     let index = 0;
@@ -26,11 +29,7 @@ class UnStyledBoard extends React.Component {
   };
   render() {
     return (
-      <>
-        <div>
-          <button onClick={this.shuffle}>Shuffle</button>
-          <button onClick={this.deal}>Deal</button>
-        </div>
+      <div className={this.props.className}>
         <Deck cards={this.state.deck} />
         {this.state.hands.map((hand, index) => (
           <React.Fragment key={index}>
@@ -38,13 +37,9 @@ class UnStyledBoard extends React.Component {
             <Hand cards={hand} />
           </React.Fragment>
         ))}
-      </>
+      </div>
     );
   }
 }
 
-export const Board = styled(UnStyledBoard)`
-  button {
-    padding: 1em;
-  }
-`;
+export const Board = styled(UnStyledBoard)``;

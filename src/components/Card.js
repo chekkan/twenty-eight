@@ -9,23 +9,21 @@ export const Card = styled(({ face, suit, className }) => {
       club: "&clubs;",
       heart: "&hearts;"
     };
-    return React.createElement("span", {
-      dangerouslySetInnerHTML: { __html: symbols[suit] },
-      style: {
-        fontSize: "5em",
-        display: "block",
-        textAlign: "center"
-      }
-    });
+    return { __html: symbols[suit] };
   };
   return (
     <div className={`${className} ${suit}`}>
-      <span
-        style={{ display: "block", fontSize: " 1.7em", fontWeight: "bold" }}
-      >
+      <div className="card-face" style={{}}>
         {face}
-      </span>
-      {symbolFor(suit)}
+        <div
+          dangerouslySetInnerHTML={symbolFor(suit)}
+          style={{ position: "relative", top: "-6px" }}
+        />
+      </div>
+      <span
+        className="card-suit--large"
+        dangerouslySetInnerHTML={symbolFor(suit)}
+      />
     </div>
   );
 })`
@@ -38,6 +36,7 @@ export const Card = styled(({ face, suit, className }) => {
   box-sizing: border-box;
   background-color: ghostwhite;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  position: relative;
   &.heart,
   &.diamond {
     color: red;
@@ -45,5 +44,21 @@ export const Card = styled(({ face, suit, className }) => {
   &.spade,
   &.club {
     color: black;
+  }
+  .card-face {
+    font-size: 1.7em;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 6px;
+    text-align: center;
+  }
+  .card-suit--large {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    font-size: 5em;
+    display: block;
+    text-align: center;
   }
 `;
