@@ -41,31 +41,9 @@ const Card = ({ face, suit }) => {
   );
 };
 
-const Deck = () => {
-  const faces = [
-    "A",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K"
-  ];
-  const suits = ["spade", "club", "heart", "diamond"];
-  return suits
-    .reduce((accum, suit) => {
-      return [...accum, ...faces.map(face => ({ face, suit }))];
-    }, [])
-    .map(({ face, suit }) => {
-      return <Card key={`${face}.${suit}`} face={face} suit={suit} />;
-    });
-};
+const Deck = ({ cards }) =>
+  cards.map(({ face, suit }) => (
+    <Card key={`${face}.${suit}`} face={face} suit={suit} />
+  ));
 
 export default Deck;

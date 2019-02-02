@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import "./App.css";
+import styles from "./App.module.css";
 import Deck from "./Deck";
+import { thirtyTwoDeck } from "./lib/deck-of-cards";
+import { shuffle } from "./lib/shuffle";
 
 class App extends Component {
+  state = {
+    cards: thirtyTwoDeck
+  };
+  shuffle = () => {
+    this.setState(({ cards }) => ({ cards: shuffle([...cards]) }));
+  };
   render() {
     return (
       <>
         <div>
-          <button>Shuffle</button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              this.shuffle();
+            }}
+          >
+            Shuffle
+          </button>
         </div>
-        <Deck />
+        <Deck cards={this.state.cards} />
       </>
     );
   }
