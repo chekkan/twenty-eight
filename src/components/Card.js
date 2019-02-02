@@ -33,7 +33,6 @@ export const Card = styled(({ face, suit, className }) => {
   height: calc(89px * 2);
   border: 1px solid #000;
   border-radius: 5px;
-  float: left;
   margin: 2px;
   padding: 0.5em;
   box-sizing: border-box;
