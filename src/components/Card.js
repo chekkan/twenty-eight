@@ -42,7 +42,7 @@ const HiddenCard = styled.div`
   background-position: 0 0;
 `;
 
-export const Card = styled(({ face, suit, hidden = false, className }) => {
+export const Card = styled(({ face, suit, hidden = true, className }) => {
   return hidden ? (
     <HiddenCard />
   ) : (

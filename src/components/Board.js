@@ -31,12 +31,15 @@ class UnStyledBoard extends React.Component {
     return (
       <div className={this.props.className}>
         <Deck cards={this.state.deck} />
-        {this.state.hands.map((hand, index) => (
-          <React.Fragment key={index}>
-            <div>Player {index + 1}</div>
-            <Hand cards={hand} />
-          </React.Fragment>
-        ))}
+        {this.state.hands.map((hand, index) => {
+          const hidden = index !== 0;
+          return (
+            <React.Fragment key={index}>
+              <div>Player {index + 1}</div>
+              <Hand cards={hand} hidden={hidden} />
+            </React.Fragment>
+          );
+        })}
       </div>
     );
   }
