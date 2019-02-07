@@ -38,18 +38,16 @@ export class UnStyledBoard extends React.Component {
   render() {
     return (
       <div className={this.props.className}>
-        <Deck cards={this.state.deck} />
+        {/* <Deck cards={this.state.deck} /> */}
         {this.state.hands.map((hand, index) => {
           const hidden = index !== 0;
           return (
-            <React.Fragment key={index}>
-              <div>Player {index + 1}</div>
-              <Hand
-                cards={hand}
-                position={positionFor(index + 1)}
-                hidden={hidden}
-              />
-            </React.Fragment>
+            <Hand
+              key={index}
+              cards={hand}
+              position={positionFor(index + 1)}
+              hidden={hidden}
+            />
           );
         })}
       </div>
