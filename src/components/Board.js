@@ -4,7 +4,12 @@ import { Hand } from "./Hand";
 import { Deck } from "./Deck";
 import { shuffle } from "../lib/shuffle";
 
-class UnStyledBoard extends React.Component {
+function positionFor(player) {
+  const positions = { 1: "bottom", 2: "right", 3: "top", 4: "left" };
+  return positions[player];
+}
+
+export class UnStyledBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +17,9 @@ class UnStyledBoard extends React.Component {
       hands: [[], [], [], []]
     };
   }
+  static defaultProps = {
+    deck: []
+  };
   componentDidMount() {
     this.shuffle(this.deal);
   }
@@ -36,7 +44,11 @@ class UnStyledBoard extends React.Component {
           return (
             <React.Fragment key={index}>
               <div>Player {index + 1}</div>
-              <Hand cards={hand} hidden={hidden} />
+              <Hand
+                cards={hand}
+                position={positionFor(index + 1)}
+                hidden={hidden}
+              />
             </React.Fragment>
           );
         })}
