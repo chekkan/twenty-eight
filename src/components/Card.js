@@ -2,16 +2,6 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 
-const symbolFor = suit => {
-  const symbols = {
-    spade: "&spades;",
-    diamond: "&diams;",
-    club: "&clubs;",
-    heart: "&hearts;"
-  };
-  return { __html: symbols[suit] };
-};
-
 const card = css`
   width: calc(64px * 2);
   height: calc(89px * 2);
@@ -25,67 +15,49 @@ const card = css`
 
 const HiddenCard = styled.div`
   ${card};
-  border: 8px solid white;
+  border-radius: 13px;
+  border-width: 0;
   background-color: white;
-  background-image: radial-gradient(midnightblue 9px, transparent 10px),
-    repeating-radial-gradient(
-      midnightblue 0,
-      midnightblue 4px,
-      transparent 5px,
-      transparent 20px,
-      midnightblue 21px,
-      midnightblue 25px,
-      transparent 26px,
-      transparent 50px
-    );
-  background-size: 30px 30px, 90px 90px;
-  background-position: 0 0;
+  background-image: url("images/card-back-red.png");
+  background-size: cover;
+  background-position: center center;
 `;
+
+const mappings = ["diamond", "heart", "spade", "club"]
+  .map(suit => [
+    { suit, num: "A", str: "ace" },
+    { suit, num: "K", str: "king" },
+    { suit, num: "Q", str: "queen" },
+    { suit, num: "J", str: "jack" },
+    { suit, num: "10", str: "ten" },
+    { suit, num: "9", str: "nine" },
+    { suit, num: "8", str: "eight" },
+    { suit, num: "7", str: "seven" },
+    { suit, num: "6", str: "six" },
+    { suit, num: "5", str: "five" },
+    { suit, num: "4", str: "four" },
+    { suit, num: "3", str: "three" },
+    { suit, num: "2", str: "two" }
+  ])
+  .reduce((acc, val) => acc.concat(val), []);
 
 export const Card = styled(({ face, suit, hidden = true, className }) => {
   return hidden ? (
     <HiddenCard />
   ) : (
-    <div className={`${className} ${suit}`}>
-      <div className="card-face" style={{}}>
-        {face}
-        <div
-          dangerouslySetInnerHTML={symbolFor(suit)}
-          style={{ position: "relative", top: "-6px" }}
-        />
-      </div>
-      <span
-        className="card-suit--large"
-        dangerouslySetInnerHTML={symbolFor(suit)}
-      />
-    </div>
+    <div className={`${className} card-face-${face} card-suit-${suit}`}></div>
   );
 })`
   ${card};
   padding: 0.5em;
   position: relative;
-  &.heart,
-  &.diamond {
-    color: red;
-  }
-  &.spade,
-  &.club {
-    color: black;
-  }
-  .card-face {
-    font-size: 1.7em;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    left: 6px;
-    text-align: center;
-  }
-  .card-suit--large {
-    position: absolute;
-    top: 30%;
-    left: 25%;
-    font-size: 5em;
-    display: block;
-    text-align: center;
-  }
+  background-size: cover;
+  backgroun-position: center;
+  ${mappings
+    .map(
+      a => `&.card-suit-${a.suit}.card-face-${a.num} {
+    background-image: url("images/card-${a.suit}-${a.str}.png");
+  }`
+    )
+    .join("\n")}
 `;
