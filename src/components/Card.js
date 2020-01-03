@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 const card = css`
   width: calc(64px * 2);
   height: calc(89px * 2);
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 13px;
+  border-width: 0;
   margin: 2px;
   background-color: ghostwhite;
   box-sizing: border-box;
@@ -52,7 +52,7 @@ export const Card = styled(({ face, suit, hidden = true, className }) => {
   padding: 0.5em;
   position: relative;
   background-size: cover;
-  backgroun-position: center;
+  background-position: center;
   ${mappings
     .map(
       a => `&.card-suit-${a.suit}.card-face-${a.num} {

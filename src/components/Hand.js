@@ -37,6 +37,6 @@ export const Hand = styled(({ cards, hidden = true, className }) => {
   }
   .card-container {
     width: calc(100% / 8 - 8px);
-    max-width: 90px;
+    max-width: 70px;
   }
 `;
