@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
 import { Hand } from "./Hand";
-import { Deck } from "./Deck";
+// import { Deck } from "./Deck";
 import { shuffle } from "../lib/shuffle";
 
 function positionFor(player) {
