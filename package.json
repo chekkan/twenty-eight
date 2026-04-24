@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/core": "^10.3.1",
     "@emotion/styled": "^10.3.0",
-    "enzyme": "^3.8.0",
+    "enzyme": "^3.11.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "2.1.3"
